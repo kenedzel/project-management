@@ -7,8 +7,11 @@ import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 
 import com.kenneth.mvc.data.entities.Resource;
 
@@ -24,6 +27,15 @@ public class ResourceController {
 		return "resource_add";
 	}
 	
+	@RequestMapping("/request")
+	@ResponseBody
+	public String request(@RequestBody Resource resource)
+	{
+		System.out.println(resource);
+		//Send out an email for request
+		return "The request has been sent for approval";
+	}
+	
 	@RequestMapping("/review")
 	public String review(@ModelAttribute Resource resource)
 	{
@@ -32,11 +44,12 @@ public class ResourceController {
 	}
 	
 	@RequestMapping(value="/save")
-	public String save(@ModelAttribute Resource resource)
+	public String save(@ModelAttribute Resource resource, SessionStatus status)
 	{
 
 		System.out.println(resource);
 		System.out.println("Invoking resource save.");
+		status.setComplete();
 		return "redirect:/resource/add";
 	}
 	

@@ -14,6 +14,7 @@
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/bootstrap-select.min.js"></script>
+	<script src="<spring:url value="/resources/js/resource.js"/>"></script>
 	
 </head>
 <body>
@@ -46,6 +47,7 @@
 			  	<div class="form-group">
    				  <label for="indicators">Indicators:</label>
   				  <form:checkboxes path="indicators" items="${checkOptions}" id="indicators"/>	
+  				  <a id="request-link" href="<spring:url value="/resource/request" />">Send Request</a>
 			  	</div>
 			  	
 			  	<div class="form-group">

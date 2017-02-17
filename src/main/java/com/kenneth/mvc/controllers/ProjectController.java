@@ -14,13 +14,16 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.kenneth.mvc.data.entities.Project;
+import com.kenneth.mvc.data.entities.Resource;
 import com.kenneth.mvc.data.entities.Sponsor;
 import com.kenneth.mvc.data.services.ProjectService;
 
 @Controller
 @RequestMapping("/project")
+@SessionAttributes("project")
 public class ProjectController {
 
 	@Autowired
@@ -40,6 +43,13 @@ public class ProjectController {
 	{
 		model.addAttribute("projects", this.projectService.findAll());
 		return "projects";
+	}
+	
+	@RequestMapping("/review")
+	public String review(@ModelAttribute Resource resource)
+	{
+		System.out.println("invoking review project");
+		return "project_review";
 	}
 	
 	@RequestMapping(value="/add", method=RequestMethod.GET)
